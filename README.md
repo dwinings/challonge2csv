@@ -12,7 +12,7 @@ In the future this can go onto PyPI for easy installation.
 
 ## challonge2csv
 To Generate a CSV file from a set of challonge brackets:
-`challonge2csv < challonge_urls.txt > output.csv`
+`standings2csv < challonge_urls.txt > output.csv`
 
 
 ## player_records2csv
