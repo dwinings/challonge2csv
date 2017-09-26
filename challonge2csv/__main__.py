@@ -4,4 +4,5 @@ def standings2csv():
 
 
 def player_records2csv():
-    import challonge2csv.player_records2csv
+    from challonge2csv.player_records2csv import main
+    main()
