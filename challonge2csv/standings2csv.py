@@ -20,8 +20,15 @@ def main():
             rows = html.select('.standings-container tr')
 
             results = {}
-            for row in filter(lambda row: row.select('td.rank'), rows):
-                add_row(results, row)
+            current_rank = 1
+
+            # Skip the header row.
+            for row in rows[1:]:
+                rank = row.select('td.rank')
+                if rank:
+                    current_rank = int(rank[0].text)
+                name = row.select('td.display_name')[0].text
+                results[normalize(name)] = current_rank
 
             tournament_results.append(results)
 
@@ -31,12 +38,6 @@ def main():
     players = sorted(players)
 
     print_results(players, tournament_results)
-
-def add_row(results, row):
-    # TODO: Input sanity checking
-    rank = int(row.select('td.rank')[0].text)
-    name = row.select('td.display_name')[0].text.strip()
-    results[normalize(name)] = rank
 
 def print_results(players, tournaments):
     writer = csv.writer(sys.stdout)
